@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-nav {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link.logout {
+            color: #dc3545;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-header h2 {
+            color: #333;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .profile-info {
+            display: grid;
+            gap: 20px;
+        }
+
+        .info-group {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .info-group label {
+            display: block;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .info-group p {
+            margin: 0;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 15px;
+            }
+            
+            .profile-card {
+                padding: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container profile-container">
+        <nav class="profile-nav">
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/update-profile" class="nav-link">Update Profile</a>
+                <span id="adminSection" style="display: none">
+                    <a href="/users" class="nav-link">Manage Users</a>
+                </span>
+                <a href="/logout" class="nav-link logout">Logout</a>
+            </div>
+        </nav>
+
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2>Your Profile</h2>
+            </div>
+            
+            <div class="profile-info">
+                <div class="info-group">
+                    <label>Username</label>
+                    <p id="username"></p>
+                </div>
+                <div class="info-group">
+                    <label>Email</label>
+                    <p id="email"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        fetch('/user-info')
+            .then(res => res.json())
+            .then(user => {
+                document.getElementById('username').textContent = user.username;
+                document.getElementById('email').textContent = user.email;
+                if (user.role === '2') {
+                    document.getElementById('adminSection').style.display = 'inline';
+                }
+            });
+    </script>
+</body>
+</html>

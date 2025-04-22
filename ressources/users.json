@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "adminamin",
+      "email": "new@gmail.com",
+      "password": "amin147",
+      "role": "2"
+    },
+    {
+      "id": 2,
+      "username": "mohamedAli_new1",
+      "email": "example@gmail.com",
+      "password": "555",
+      "role": "2"
+    },
+    {
+      "id": 6,
+      "username": "imane",
+      "email": "imanetest22@gmail.com",
+      "password": "222",
+      "role": "2"
+    },
+    {
+      "id": 7,
+      "username": "Test",
+      "email": "testAttack@gmail.com",
+      "password": "222",
+      "role": "2"
+    }
+  ],
+  "nextId": 8
+}
